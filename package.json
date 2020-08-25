@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "compilerOptions" : {
-    "include" : [
+  "compilerOptions": {
+    "include": [
       "src/**/*.ts"
     ],
-    "exclude" : [
+    "exclude": [
       "node_modules"
     ]
   },
