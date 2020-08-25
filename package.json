@@ -12,8 +12,8 @@
     ]
   },
   "scripts": {
-    "start": "ts-node src/config/server.ts",
-    "dev": "nodemon -x ts-node src/config/server.ts"
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon -x ts-node src/server.ts"
   },
   "keywords": [],
   "author": "",
