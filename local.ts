@@ -7,7 +7,6 @@ provideSyncService({
             ? [] : (process.env.ALLOWED_IP_ADDRESSES).split(', '),
     mapping: (inputFile) => localMappingFunctionTest(inputFile),
     target: {
-        apiUrl: 'https://app.edelog.com',
         syncServiceId: '',
         syncServiceSecretKey: ''
     },

@@ -5,8 +5,10 @@ import {middleware} from './functions/middleware.func';
 import Loggy from './functions/loggy.func';
 import {Vars} from './vars';
 import {wrapResponse} from './functions/response-wrapper.func';
+import {configurationLoader} from './functions/configuration-loader.func';
 
 export default function provideSyncService(config: Configuration) {
+    config = configurationLoader(config);
     Vars.loggy = new Loggy(config);
     /**
      * Setup
@@ -25,9 +27,7 @@ export default function provideSyncService(config: Configuration) {
      */
     app.use('/api/v1/process', (req, res) => processData(req, res));
     app.use('/api/v1', (req, res) => {
-        res.send(wrapResponse(true, {
-            versionHash: process.env.SOURCE_VERSION || 'unknown'
-        }));
+        res.send(wrapResponse(true));
     });
 
     /**

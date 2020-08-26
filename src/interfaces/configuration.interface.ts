@@ -2,16 +2,16 @@ export interface Configuration {
     target: ConfigurationTarget;
     accessKey: string | null;
     allowedIpAddresses: string[] | null;
-    webserviceConfig: ConfigurationWebservice;
+    webserviceConfig?: ConfigurationWebservice;
     mapping: (inputFile: Blob) => boolean;
 }
 
 export interface ConfigurationWebservice {
-    logging: boolean;
+    logging?: boolean;
 }
 
 export interface ConfigurationTarget {
-    apiUrl: string,
+    apiUrl?: string,
     syncServiceId: string,
     syncServiceSecretKey: string
 }
