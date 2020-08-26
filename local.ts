@@ -2,7 +2,9 @@ import provideSyncService from './src/server';
 
 provideSyncService({
     accessKey: 'efrgtidhsnfuwe',
-    allowedIpAddresses: process.env.ALLOWED_IP_ADDRESSES === '' ? [] : (process.env.ALLOWED_IP_ADDRESSES || '').split(', '),
+    allowedIpAddresses:
+        process.env.ALLOWED_IP_ADDRESSES == null || process.env.ALLOWED_IP_ADDRESSES === ''
+            ? [] : (process.env.ALLOWED_IP_ADDRESSES).split(', '),
     mapping: (inputFile) => localMappingFunctionTest(inputFile),
     target: {
         apiUrl: 'https://app.edelog.com',
