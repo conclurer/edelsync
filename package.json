@@ -12,16 +12,20 @@
     ]
   },
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "dev": "nodemon -x ts-node src/server.ts"
+    "start": "ts-node local.ts",
+    "dev": "nodemon -x ts-node local.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.17.7",
+    "@types/ip": "^1.1.0",
+    "@types/is-blank": "^2.1.0",
     "@types/node": "^14.6.0",
     "express": "^4.17.1",
+    "ip": "^1.1.5",
+    "is-blank": "^2.1.0",
     "nodemon": "^2.0.4",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
