@@ -33,4 +33,4 @@ npm start
 ## Todo
 
 * Send request to Copy Server if something fails
-* Send request to 
+* Send request to Master Server if something fails
