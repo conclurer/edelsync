@@ -1,11 +1,12 @@
 import provideSyncService from './src/server';
+import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface';
 
 provideSyncService({
     accessKey: 'efrgtidhsnfuwe',
     allowedIpAddresses:
         process.env.ALLOWED_IP_ADDRESSES == null || process.env.ALLOWED_IP_ADDRESSES === ''
             ? [] : (process.env.ALLOWED_IP_ADDRESSES).split(', '),
-    mapping: (inputFile) => localMappingFunctionTest(inputFile),
+    mapping: (inputFilePaths) => localMappingFunctionTest(inputFilePaths),
     target: {
         syncServiceId: '',
         syncServiceSecretKey: ''
@@ -15,6 +16,12 @@ provideSyncService({
     },
 });
 
-function localMappingFunctionTest(inputFile: Blob): boolean {
-    return true;
+async function localMappingFunctionTest(inputFilePaths: string[]): Promise<TargetDataFormat> {
+    console.log(inputFilePaths)
+    return {
+        mode: 'delta',
+        version: 1,
+        tasks: [],
+        performOnNotMatchedRecords: NotMatchedRecordsAction.Skip
+    }
 }

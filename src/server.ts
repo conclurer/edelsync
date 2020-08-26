@@ -6,6 +6,8 @@ import Loggy from './functions/loggy.func';
 import {Vars} from './vars';
 import {wrapResponse} from './functions/response-wrapper.func';
 import {configurationLoader} from './functions/configuration-loader.func';
+import fileUpload from 'express-fileupload';
+import tempDirectory from 'temp-dir';
 
 export default function provideSyncService(config: Configuration) {
     config = configurationLoader(config);
@@ -23,10 +25,18 @@ export default function provideSyncService(config: Configuration) {
     app.use(router);
 
     /**
+     * File uploads
+     */
+    app.use(fileUpload({
+        useTempFiles: true,
+        tempFileDir: tempDirectory
+    }));
+
+    /**
      * Routes
      */
-    app.use('/api/v1/process', (req, res) => processData(req, res));
-    app.use('/api/v1', (req, res) => {
+    app.post('/api/v1/process', (req, res) => processData(req, res, config));
+    app.get('/api/v1', (req, res) => {
         res.send(wrapResponse(true));
     });
 
