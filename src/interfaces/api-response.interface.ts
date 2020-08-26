@@ -1,11 +1,9 @@
 export interface ApiResponse {
     success: boolean;
-    data?: ApiResponseData | [];
+    data?: ApiResponseData;
     error?: string;
 }
 
-export type ApiResponseData = Interface1;
-
-export interface Interface1 {
-    test: boolean
+export interface ApiResponseData {
+    [key: string]: number | string | boolean | ApiResponseData | Array<number | string | boolean | ApiResponseData | unknown[]>
 }

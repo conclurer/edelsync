@@ -1,16 +1,16 @@
 import provideSyncService from './src/server';
 
 provideSyncService({
-    accessKey: "efrgtidhsnfuwe",
-    allowedIpAddresses: ["::1", "127.0.0.1", "10.0.0.1"],
+    accessKey: 'efrgtidhsnfuwe',
+    allowedIpAddresses: (process.env.ALLOWED_IP_ADDRESSES || '').split(', '),
     mapping: (inputFile) => localMappingFunctionTest(inputFile),
     target: {
-        apiUrl: "conclurer.com",
-        syncServiceId: "213",
-        syncServiceSecretKey: "fsdgemoirmngoernbdg"
+        apiUrl: 'https://app.edelog.com',
+        syncServiceId: '',
+        syncServiceSecretKey: ''
     },
     webserviceConfig: {
-        logging: process.env['LOGGING'] === 'true'
+        logging: process.env.LOGGING === 'true'
     },
 });
 
