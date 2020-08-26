@@ -1,9 +1,13 @@
 export interface Configuration {
     target: ConfigurationTarget;
-    accessKey: string;
+    accessKey: string | null;
     allowedIpAddresses: string[] | null;
-    webserviceConfig: {[columnName: string] : unknown};
+    webserviceConfig: ConfigurationWebservice;
     mapping: (inputFile: Blob) => boolean;
+}
+
+export interface ConfigurationWebservice {
+    logging: boolean;
 }
 
 export interface ConfigurationTarget {

@@ -1,6 +1,7 @@
 export interface ApiResponse {
-    success: boolean,
-    data?: ApiResponseData | []
+    success: boolean;
+    data?: ApiResponseData | [];
+    error?: string;
 }
 
 export type ApiResponseData = Interface1;
