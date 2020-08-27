@@ -1,6 +1,6 @@
 import provideSyncService from './src/server';
-import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface';
-import {Configuration} from './src/interfaces/configuration.interface';
+import {NotMatchedRecordsAction, TargetDataFormat} from './src';
+import {Configuration} from './src';
 
 provideSyncService({
     accessKey: '',
