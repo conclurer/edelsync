@@ -6,6 +6,7 @@ export interface Configuration {
     allowedIpAddresses: string[] | null;
     webserviceConfig?: ConfigurationWebservice;
     mapping: (inputFilePaths: string[]) => Promise<TargetDataFormat>;
+    errorHandler?: (errorMessage: string) => void;
 }
 
 export interface ConfigurationWebservice {
