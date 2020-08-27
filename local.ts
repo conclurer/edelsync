@@ -1,5 +1,5 @@
 import provideSyncService from './src/server';
-import {NotMatchedRecordsAction, TargetDataFormat} from './src';
+import {NotFoundAction, NotMatchedRecordsAction, TargetDataFormat} from './src';
 import {Configuration} from './src';
 
 provideSyncService({
@@ -14,10 +14,23 @@ provideSyncService({
 async function mappingFunction(inputFilePaths: string[]): Promise<TargetDataFormat> {
     console.log(inputFilePaths)
     return {
-        mode: 'delta',
         version: 1,
-        tasks: [],
-        performOnNotMatchedRecords: NotMatchedRecordsAction.Skip
+        updateCollections: [
+            {
+                databaseName: '',
+                performOnNotMatchedRecords: NotMatchedRecordsAction.Skip,
+                tasks: [
+                    {
+                        type: 'update-data',
+                        where: {},
+                        update: {
+                            test: 'd'
+                        },
+                        ifNotFound: NotFoundAction.CreateNewRecord
+                    }
+                ]
+            }
+        ],
     }
 }
 

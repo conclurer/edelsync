@@ -33,7 +33,7 @@ npm start
 ## Minimal Configuration
 ```ts
 import provideSyncService from './src/server';
-import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface';
+import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface'; import {NotFoundAction} from './schema.interface';
 
 provideSyncService({
     accessKey: 'efrgtidhsnfuwe',
@@ -47,10 +47,23 @@ provideSyncService({
 async function mappingFunction(inputFilePaths: string[]): Promise<TargetDataFormat> {
     console.log(inputFilePaths)
     return {
-        mode: 'delta',
         version: 1,
-        tasks: [],
-        performOnNotMatchedRecords: NotMatchedRecordsAction.Skip
+        updateCollections: [
+            {
+                databaseName: '',
+                performOnNotMatchedRecords: NotMatchedRecordsAction.Skip,
+                tasks: [
+                    {
+                        type: 'update-data',
+                        where: {},
+                        update: {
+                            test: 'd'
+                        },
+                        ifNotFound: NotFoundAction.CreateNewRecord
+                    }
+                ]
+            }
+        ],
     }
 }
 
@@ -62,7 +75,7 @@ async function mappingFunction(inputFilePaths: string[]): Promise<TargetDataForm
 ```ts
 import provideSyncService from './src/server';
 import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface';
-import {Configuration} from './src/interfaces/configuration.interface';
+import {Configuration} from './src/interfaces/configuration.interface'; import {NotFoundAction} from './schema.interface';
 
 provideSyncService({
     accessKey: 'efrgtidhsnfuwe',
@@ -82,10 +95,23 @@ provideSyncService({
 
 async function mappingFunction(inputFilePaths: string[]): Promise<TargetDataFormat> {
     return {
-        mode: 'delta',
         version: 1,
-        tasks: [],
-        performOnNotMatchedRecords: NotMatchedRecordsAction.Skip
+        updateCollections: [
+            {
+                databaseName: '',
+                performOnNotMatchedRecords: NotMatchedRecordsAction.Skip,
+                tasks: [
+                    {
+                        type: 'update-data',
+                        where: {},
+                        update: {
+                            test: 'd'
+                        },
+                        ifNotFound: NotFoundAction.CreateNewRecord
+                    }
+                ]
+            }
+        ],
     }
 }
 
