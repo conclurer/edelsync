@@ -1,22 +1,17 @@
 import provideSyncService from './src/server';
 import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface';
+import {Configuration} from './src/interfaces/configuration.interface';
 
 provideSyncService({
-    accessKey: 'efrgtidhsnfuwe',
-    allowedIpAddresses:
-        process.env.ALLOWED_IP_ADDRESSES == null || process.env.ALLOWED_IP_ADDRESSES === ''
-            ? [] : (process.env.ALLOWED_IP_ADDRESSES).split(', '),
-    mapping: (inputFilePaths) => localMappingFunctionTest(inputFilePaths),
+    accessKey: '',
+    mapping: (inputFilePaths) => mappingFunction(inputFilePaths),
     target: {
         syncServiceId: '',
         syncServiceSecretKey: ''
     },
-    webserviceConfig: {
-        logging: process.env.LOGGING === 'true'
-    },
 });
 
-async function localMappingFunctionTest(inputFilePaths: string[]): Promise<TargetDataFormat> {
+async function mappingFunction(inputFilePaths: string[]): Promise<TargetDataFormat> {
     console.log(inputFilePaths)
     return {
         mode: 'delta',
@@ -24,4 +19,8 @@ async function localMappingFunctionTest(inputFilePaths: string[]): Promise<Targe
         tasks: [],
         performOnNotMatchedRecords: NotMatchedRecordsAction.Skip
     }
+}
+
+async function handleError(errorMessage: string, config: Configuration) {
+    // todo
 }

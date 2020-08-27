@@ -18,17 +18,21 @@ export async function sendSyncRequest(data: TargetDataFormat, config: Configurat
             }
         });
         const json = await response.json();
-        Vars.loggy.log("[Sync-Request] Response is ", json);
+        Vars.loggy.log('[Sync-Request] Response is ', json);
     } catch (e) {
-        handleFail();
+        handleFail(e, config);
         throw e;
     }
 }
 
 function getApiUrl(config: Configuration): string {
-    return `${config.target.apiUrl}/api/v4/sync_services/${config.target.syncServiceId}/jobs`
+    return `${config.target.apiUrl}/api/v4/sync_services/${config.target.syncServiceId}/jobs`;
 }
 
-function handleFail() {
+function handleFail(message: string, config: Configuration) {
+    if (config.errorHandler) {
+        config.errorHandler(message, config);
+    }
 
+    // todo send notification to monitoring
 }

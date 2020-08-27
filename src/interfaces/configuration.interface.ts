@@ -2,11 +2,11 @@ import {TargetDataFormat} from './schema.interface';
 
 export interface Configuration {
     target: ConfigurationTarget;
-    accessKey: string | null;
-    allowedIpAddresses: string[] | null;
+    accessKey?: string;
+    allowedIpAddresses?: string[];
     webserviceConfig?: ConfigurationWebservice;
     mapping: (inputFilePaths: string[]) => Promise<TargetDataFormat>;
-    errorHandler?: (errorMessage: string) => void;
+    errorHandler?: (errorMessage: string, config: Configuration) => void;
 }
 
 export interface ConfigurationWebservice {

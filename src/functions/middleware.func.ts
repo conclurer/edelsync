@@ -7,8 +7,8 @@ import {Vars} from '../vars';
 
 export function middleware(req: Request, res: Response, next: NextFunction, config: Configuration) {
     const runMiddleware = [
-        validateToken(req, config.accessKey),
-        validateIP(config.allowedIpAddresses, req.ip)
+        (config.accessKey ? validateToken(req, config.accessKey) : true),
+        (config.allowedIpAddresses ? validateIP(config.allowedIpAddresses, req.ip) : true)
     ];
 
     if(runMiddleware.every(v => v === true)) {
