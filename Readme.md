@@ -25,6 +25,10 @@ npm start
         <td><code>TRUE</code> or <code>FALSE</code></td>
     </tr>
     <tr>
+        <td><code>SYNC_SERVICE_API_DOMAIN</code></td>
+        <td><code>https://app.edelog.com</code></td>
+    </tr>
+    <tr>
         <td><code>ALLOWED_IP_ADDRESSES</code></td>
         <td><code>::1, 127.0.0.1, 10.0.0.1</code> (separated with <code>, `</code>) </td>
     </tr>
