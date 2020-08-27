@@ -1,6 +1,6 @@
-import provideSyncService from './src/server';
+import provideSyncService from './server';
 
 export default provideSyncService;
-export * from './src/interfaces/configuration.interface';
-export * from './src/interfaces/schema.interface';
-export * from './src/interfaces/api-response.interface';
+export * from './interfaces/configuration.interface';
+export * from './interfaces/schema.interface';
+export * from './interfaces/api-response.interface';
