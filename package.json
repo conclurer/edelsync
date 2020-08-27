@@ -1,8 +1,9 @@
 {
-  "name": "edelsync",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@conclurer/edelog-sync-service",
+  "version": "1.0.0-beta.0",
+  "description": "A package used to create a small server for syncing data between Edelog and third-party services",
   "main": "index.js",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "compilerOptions": {
     "include": [
       "src/**/*.ts"
