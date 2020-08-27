@@ -1,20 +1,33 @@
 export interface TargetDataFormat {
-    mode: 'full' | 'delta';
     version: 1;
-    tasks: AnySyncTask[];
-    performOnNotMatchedRecords: NotMatchedRecordsAction;
+    updateCollections: DatabaseUpdateCollection[];
 }
 
 export type AnySyncTask = UpdateSyncTask | DeleteSyncTask;
 
+export type GenericColumnValue = null | string | number | boolean | string[];
+
+export interface DatabaseUpdateCollection {
+    databaseName: string;
+    tasks: AnySyncTask[];
+    performOnNotMatchedRecords: NotMatchedRecordsAction;
+}
+
+export interface DataSelectStatement {
+    databaseName: string;
+    select: string;
+    where: { [columnName: string]: GenericColumnValue };
+    returnFirstRecord?: boolean;
+}
+
 export interface GenericSyncTask {
     // this might be enhanced in the future
-    where: { [columnName: string]: unknown };
+    where: { [columnName: string]: GenericColumnValue | DataSelectStatement };
 }
 
 export interface UpdateSyncTask extends GenericSyncTask {
     type: 'update-data';
-    update: { [columnName: string]: unknown };
+    update: { [columnName: string]: GenericColumnValue | DataSelectStatement };
     ifNotFound: NotFoundAction;
 }
 
