@@ -47,17 +47,15 @@ npm start
 </table>
 
 ## Minimal Configuration
+
+Warning: This assumes that you have configured the Enviroment Variables described above. 
+
 ```ts
 import provideSyncService from './src/server';
 import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface'; import {NotFoundAction} from './schema.interface';
 
 provideSyncService({
-    accessKey: 'efrgtidhsnfuwe',
     mapping: (inputFilePaths) => mappingFunction(inputFilePaths),
-    target: {
-        syncServiceId: '',
-        syncServiceSecretKey: ''
-    },
 });
 
 async function mappingFunction(inputFilePaths: string[]): Promise<TargetDataFormat> {
