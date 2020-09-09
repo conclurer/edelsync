@@ -2,7 +2,7 @@ import {Configuration} from '../interfaces/configuration.interface';
 import {NextFunction, Request, Response} from 'express';
 import isBlank from 'is-blank';
 import ip from 'ip';
-import {ApiResponse} from '../interfaces/api-response.interface';
+import {ApiResponse} from '..';
 import {Vars} from '../vars';
 
 export function middleware(req: Request, res: Response, next: NextFunction, config: Configuration) {

@@ -22,11 +22,23 @@ npm start
     </thead>
     <tr>
         <td><code>LOGGING</code></td>
-        <td><code>TRUE</code> or <code>FALSE</code></td>
+        <td><code>true</code> or <code>false</code></td>
     </tr>
     <tr>
         <td><code>SYNC_SERVICE_API_DOMAIN</code></td>
         <td><code>https://app.edelog.com</code></td>
+    </tr>
+    <tr>
+        <td><code>ACCESS_KEY</code></td>
+        <td>String; The key needed to authorize to this api</td>
+    </tr>
+    <tr>
+        <td><code>SYNC_SERVICE_ID</code></td>
+        <td>String; The Edelog sync service ID</td>
+    </tr>
+    <tr>
+        <td><code>SYNC_SERVICE_SECRET_KEY</code></td>
+        <td>String; The Edelog secret key</td>
     </tr>
     <tr>
         <td><code>ALLOWED_IP_ADDRESSES</code></td>

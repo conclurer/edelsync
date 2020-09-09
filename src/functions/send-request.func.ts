@@ -1,12 +1,12 @@
 import fetch from 'node-fetch';
 import FormData from 'form-data';
-import {Configuration} from '../interfaces/configuration.interface';
+import {Configuration} from '..';
 import {Vars} from '../vars';
-import {TargetDataFormat} from '../interfaces/schema.interface';
+import {TargetDataFormat} from '..';
 
 export async function sendSyncRequest(data: TargetDataFormat, config: Configuration) {
     const form = new FormData();
-    form.append('request', JSON.stringify(data));
+    form.append('requestPayload', JSON.stringify(data));
 
     try {
         const response = await fetch(getApiUrl(config), {
@@ -14,7 +14,7 @@ export async function sendSyncRequest(data: TargetDataFormat, config: Configurat
             body: form,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Token ${config.target.syncServiceSecretKey}`
+                'Authorization': `Bearer ${config.target.syncServiceSecretKey}`
             }
         });
         const json = await response.json();

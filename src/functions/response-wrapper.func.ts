@@ -1,4 +1,4 @@
-import {ApiResponse, ApiResponseData} from '../interfaces/api-response.interface';
+import {ApiResponse, ApiResponseData} from '..';
 
 export function wrapResponse(success: boolean, data?: ApiResponseData): ApiResponse {
     return {

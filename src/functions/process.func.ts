@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {Configuration} from '../interfaces/configuration.interface';
+import {Configuration} from '..';
 import {wrapResponse} from './response-wrapper.func';
 import {sendSyncRequest} from './send-request.func';
 import isBlank from 'is-blank';

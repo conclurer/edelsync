@@ -1,6 +1,6 @@
 import express from 'express';
 import {processData} from './functions/process.func';
-import {Configuration} from './interfaces/configuration.interface';
+import {Configuration, ConfigurationInput} from './interfaces/configuration.interface';
 import {middleware} from './functions/middleware.func';
 import Loggy from './functions/loggy.func';
 import {Vars} from './vars';
@@ -9,9 +9,9 @@ import {configurationLoader} from './functions/configuration-loader.func';
 import fileUpload from 'express-fileupload';
 import tempDirectory from 'temp-dir';
 
-export default function provideSyncService(config: Configuration) {
-    Vars.loggy = new Loggy(config);
-    config = configurationLoader(config);
+export default function provideSyncService(config: ConfigurationInput) {
+    Vars.loggy = new Loggy();
+    const loadedConfig = configurationLoader(config);
     /**
      * Setup
      */
@@ -21,7 +21,7 @@ export default function provideSyncService(config: Configuration) {
     /**
      * Middleware
      */
-    router.use((req, res, next) => middleware(req, res, next, config));
+    router.use((req, res, next) => middleware(req, res, next, loadedConfig));
     app.use(router);
 
     /**
@@ -35,7 +35,7 @@ export default function provideSyncService(config: Configuration) {
     /**
      * Routes
      */
-    app.post('/api/v1/process', (req, res) => processData(req, res, config));
+    app.post('/api/v1/process', (req, res) => processData(req, res, loadedConfig));
     app.get('/api/v1', (req, res) => {
         res.send(wrapResponse(true));
     });

@@ -1,22 +1,22 @@
-import {Configuration} from '../interfaces/configuration.interface';
+import {Configuration} from '..';
 
 export default class Loggy {
 
-    constructor(private readonly config: Configuration) {
+    constructor(public loggingEnabled: boolean = false) {
     }
 
     public log(...data: unknown[]) {
-        if (!this.config.webserviceConfig?.logging) return;
+        if (!this.loggingEnabled) return;
         console.log('📗', ...data);
     }
 
     public info(...data: unknown[]) {
-        if (!this.config.webserviceConfig?.logging) return;
+        if (!this.loggingEnabled) return;
         console.info('📘', ...data);
     }
 
     public warn(...data: unknown[]) {
-        if (!this.config.webserviceConfig?.logging) return;
+        if (!this.loggingEnabled) return;
         console.warn('📙', ...data);
     }
 
