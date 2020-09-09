@@ -1,6 +1,6 @@
 import express from 'express';
 import {processData} from './functions/process.func';
-import {Configuration, ConfigurationInput} from './interfaces/configuration.interface';
+import {ConfigurationInput} from './interfaces/configuration.interface';
 import {middleware} from './functions/middleware.func';
 import Loggy from './functions/loggy.func';
 import {Vars} from './vars';

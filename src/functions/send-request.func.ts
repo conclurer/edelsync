@@ -13,7 +13,6 @@ export async function sendSyncRequest(data: TargetDataFormat, config: Configurat
             method: 'post',
             body: form,
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${config.target.syncServiceSecretKey}`
             }
         });
