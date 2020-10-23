@@ -1,4 +1,4 @@
-# Edelsync Package
+# Edelog Sync Service
 
 This package provides an abstract implementation for syncing customer data between their APIs and our Edelog Software.
 

@@ -1,7 +1,7 @@
 import {Request, Response} from 'express';
 import {Configuration} from '..';
 import {wrapResponse} from './response-wrapper.func';
-import {sendSyncRequest} from './send-request.func';
+import {sendErrorMessage, sendSyncRequest} from './send-request.func';
 import isBlank from 'is-blank';
 
 export async function processData(req: Request, res: Response, config: Configuration) {
@@ -12,10 +12,19 @@ export async function processData(req: Request, res: Response, config: Configura
         res.send(wrapResponse(true));
     } catch (e) {
         res.send(wrapResponse(false, {error: e}));
+        sendErrorMessage(e, config);
         return;
     }
 
-    const files = Array.isArray(req.files.file) ? req.files.file : [req.files.file];
-    const mappedTargedData = await config.mapping(files.map(f => f.tempFilePath));
-    await sendSyncRequest(mappedTargedData, config)
+    let mappedTargetData;
+
+    try {
+        const files = Array.isArray(req.files.file) ? req.files.file : [req.files.file];
+        mappedTargetData = await config.mapping(files.map(f => f.tempFilePath));
+    } catch (e) {
+        sendErrorMessage(e, config);
+        return;
+    }
+
+    await sendSyncRequest(mappedTargetData, config)
 }

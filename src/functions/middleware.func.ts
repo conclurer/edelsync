@@ -11,7 +11,7 @@ export function middleware(req: Request, res: Response, next: NextFunction, conf
         (config.allowedIpAddresses ? validateIP(config.allowedIpAddresses, req.ip) : true)
     ];
 
-    if(runMiddleware.every(v => v === true)) {
+    if(!runMiddleware.includes(false)) {
         next();
     } else {
         res.status(403).send({

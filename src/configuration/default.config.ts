@@ -1,5 +1,5 @@
 export const defaults = {
-    target: {
-        apiUrl: 'https://app.edelog.com',
-    },
+  target: {
+    apiUrl: 'https://app.edelog.com',
+  },
 }

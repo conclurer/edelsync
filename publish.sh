@@ -2,6 +2,8 @@
 
 baseDir=$(pwd)
 
+npm run build
+
 cp "$baseDir/package.json" "$baseDir/dist"
 cp "$baseDir/README.md" "$baseDir/dist"
 cp "$baseDir/LICENSE" "$baseDir/dist"
