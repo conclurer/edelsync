@@ -27,6 +27,9 @@ export function configurationLoader(config: ConfigurationInput): Configuration {
     const urlSource = process.env.SYNC_SERVICE_API_DOMAIN != undefined ? 'env var SYNC_SERVICE_API_DOMAIN' : 'default';
     const message = `[Configuration Loader] Setting config.target.apiUrl ${urlSource}: (${config.target.apiUrl})`;
     Vars.loggy.warn(message);
+    if (!config.target.apiUrl.startsWith('https://')) {
+      Vars.loggy.warn(`[Configuration Loader] config.target.apiUrl ${urlSource} uses a non-encrypted connection. Please verify if this is intentional!`)
+    }
   }
   if (isBlank(config.target.syncServiceId)) {
     config.target.syncServiceId = process.env.SYNC_SERVICE_ID != undefined ? process.env.SYNC_SERVICE_ID : '';
