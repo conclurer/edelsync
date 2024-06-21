@@ -52,7 +52,8 @@ Warning: This assumes that you have configured the Enviroment Variables describe
 
 ```ts
 import provideSyncService from './src/server';
-import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface'; import {NotFoundAction} from './schema.interface';
+import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface'; 
+import {NotFoundAction} from './schema.interface';
 
 provideSyncService({
     mapping: (inputFilePaths) => mappingFunction(inputFilePaths),
@@ -89,7 +90,8 @@ async function mappingFunction(inputFilePaths: string[]): Promise<TargetDataForm
 ```ts
 import provideSyncService from './src/server';
 import {NotMatchedRecordsAction, TargetDataFormat} from './src/interfaces/schema.interface';
-import {Configuration} from './src/interfaces/configuration.interface'; import {NotFoundAction} from './schema.interface';
+import {Configuration} from './src/interfaces/configuration.interface'; 
+import {NotFoundAction} from './schema.interface';
 
 provideSyncService({
     accessKey: 'efrgtidhsnfuwe',
@@ -134,8 +136,3 @@ async function handleError(errorMessage: string, config: Configuration) {
 }
 
 ```
-
-## Todo
-
-* Send request to Copy Server if something fails
-* Send request to Master Server if something fails
